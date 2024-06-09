@@ -1,0 +1,41 @@
+common: accelerate launch -m lm_eval --model hf --tasks {task}  --batch_size 16 --model_args pretrained={model} --num_fewshot {shot}
+search:
+  model:
+    - name: Llama-2-7b-hf
+      command: "meta-llama/Llama-2-7b-hf"
+    - name: Llama-2-7b-chat-hf
+      command: "meta-llama/Llama-2-7b-chat-hf"
+    - name:  Meta-Llama-3-8B-Instruct
+      command: "meta-llama/Meta-Llama-3-8B-Instruct"
+    - name:  Meta-Llama-3-8B
+      command: "meta-llama/Meta-Llama-3-8B"
+  shot:
+    - name: 0-shot
+      command: "0"
+    - name: 1-shot
+      command: "1"
+    - name: 2-shot
+      command: "2"
+    - name: 3-shot
+      command: "3"
+    - name: 4-shot
+      command: "4"
+    - name: 5-shot
+      command: "5"
+    - name: 6-shot
+      command: "6"
+    - name: 7-shot
+      command: "7"
+    - name: 8-shot
+      command: "8"
+    - name: 9-shot
+      command: "9"
+  task:
+    - name: GSM8K
+      command: "gsm8k"
+    - name: AGIMath
+      command: "agieval_math"
+    - name: IFEVAL
+      command: "ifeval"
+    
+    
