@@ -44,10 +44,10 @@ cd /data/home/beidic/zhuoming/icl
 which python 
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 
 
-/usr/bin/bash {}
+{}
 """.format(i, task_name, cmd1)
 
-    l_cmd = "sbatch " + script_name + "\n"
+    l_cmd = "/usr/bin/sbatch " + script_name + "\n"
     
     launch_cmd.append(l_cmd)
     with open(script_name, "w+") as f:
