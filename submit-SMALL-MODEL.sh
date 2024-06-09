@@ -1,3 +1,4 @@
+#!/bin/bash
 sbatch scripts/Llama-2-7b-hf-num-shots-0-iclSMALL-MODEL.sh
 sbatch scripts/Llama-2-7b-hf-num-shots-1-iclSMALL-MODEL.sh
 sbatch scripts/Llama-2-7b-hf-num-shots-2-iclSMALL-MODEL.sh
