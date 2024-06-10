@@ -20,7 +20,7 @@ for i, pack in enumerate(product(MODELS, SHOTS)):
     results_file = log_name + "/results.json"
     if not os.path.exists(results_file):
         continue
-    with open(log_name, "r") as log:
+    with open(results_file, "r") as log:
         result_dict = json.load(log)
         em = result_dict["results"]["gsm8k"]["exact_match,strict-match"]
         fm = result_dict["results"]["gsm8k"]["exact_match,flexible-match"]
