@@ -23,7 +23,7 @@ for i, pack in enumerate(product(MODELS, SHOTS)):
     with open(results_file, "r") as log:
         result_dict = json.load(log)
         em = result_dict["results"]["gsm8k"]["exact_match,strict-match"]
-        fm = result_dict["results"]["gsm8k"]["exact_match,flexible-match"]
+        fm = result_dict["results"]["gsm8k"]["exact_match,flexible-extract"]
         strict_match[model][num_shot] = em
         flexible_match[model][num_shot] = fm
 
