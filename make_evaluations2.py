@@ -1,6 +1,6 @@
 MODELS = ["meta-llama/Llama-2-7b-hf", "meta-llama/Llama-2-7b-chat-hf", "meta-llama/Meta-Llama-3-8B", "meta-llama/Meta-Llama-3-8B-Instruct"]
 SHOTS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-TASK = "SMALL-MODEL"
+TASK = "NEW-SMALL-MODEL"
 launch_cmd = []
 from itertools import product
 
@@ -8,9 +8,9 @@ for i, pack in enumerate(product(MODELS, SHOTS)):
     model = pack[0]
     num_shot = pack[1]
     
-    task_name = pack[0].split("/")[1] + "-num-shots-" + str(pack[1])
+    task_name = pack[0].split("/")[1] + "-num-shots-" + str(pack[1]) + "{}".format(TASK)
     log_name = "/data/home/beidic/zhuoming/icl/" + task_name
-    cmd1 = "accelerate launch -m lm_eval --model hf --tasks gsm8k  --batch_size 16 --model_args pretrained={}  --output_path {} --num_fewshot {} --limit 0.3".format(model, log_name, num_shot)
+    cmd1 = "accelerate launch -m lm_eval --model hf --tasks gsm8k  --batch_size 16 --model_args pretrained={}  --output_path {} --num_fewshot {} --limit 0.1".format(model, log_name, num_shot)
     results_file = log_name + "/results.json"
     cmd2 = "cat {}".format(results_file)
     script_name = "scripts/" + task_name + "-icl{}.sh".format(TASK)
@@ -47,7 +47,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 {}
 """.format(i, task_name, cmd1)
 
-    l_cmd = "sbatch " + script_name + "\n"
+    l_cmd = "/opt/slurm/bin/sbatch " + script_name + "\n"
     
     launch_cmd.append(l_cmd)
     with open(script_name, "w+") as f:
