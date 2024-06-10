@@ -28,4 +28,4 @@ cd /data/home/beidic/zhuoming/icl
 which python 
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 
 
-accelerate launch -m lm_eval --model hf --tasks gsm8k  --batch_size 16 --model_args pretrained=meta-llama/Llama-2-7b-hf  --output_path /data/home/beidic/zhuoming/icl/Llama-2-7b-hf-num-shots-8 --num_fewshot 8
+accelerate launch -m lm_eval --model hf --tasks gsm8k  --batch_size 16 --model_args pretrained=meta-llama/Llama-2-7b-hf  --output_path /data/home/beidic/zhuoming/icl/Llama-2-7b-hf-num-shots-8 --num_fewshot 8 --limit 0.3

@@ -10,7 +10,7 @@ for i, pack in enumerate(product(MODELS, SHOTS)):
     
     task_name = pack[0].split("/")[1] + "-num-shots-" + str(pack[1])
     log_name = "/data/home/beidic/zhuoming/icl/" + task_name
-    cmd1 = "lm_eval --model hf --tasks gsm8k  --batch_size 32 --model_args pretrained={},parallelize=True  --output_path {} --num_fewshot {}".format(model, log_name, num_shot)
+    cmd1 = "lm_eval --model hf --tasks gsm8k  --batch_size 32 --model_args pretrained={},parallelize=True  --output_path {} --num_fewshot {} --limit 0.3".format(model, log_name, num_shot)
     results_file = log_name + "/results.json"
     cmd2 = "cat {}".format(results_file)
     script_name = "scripts/" + task_name + "-icl{}.sh".format(TASK)
